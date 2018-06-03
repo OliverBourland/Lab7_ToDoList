@@ -13,8 +13,8 @@ class Task extends Component {
     onDeleteTask(event) {
         event.preventDefault();
         const index = this.props.index;
-        const deleteT = this.props.deleteTask;
-        deleteT(index);
+        const deleteTask = this.props.deleteTask;
+        deleteTask(index);
     }
 
     render() {

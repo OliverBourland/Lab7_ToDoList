@@ -23,27 +23,26 @@ class App extends Component {
 
 
 toggleTaskStatus(index) {
-    // this.setState(tasks[index].isComplete = !tasks[index].isComplete)
-    // this.loadTasks();
+  let complete = !this.state.tasks[index].isComplete;
+    this.setState({task: complete})
 }
-deleteTask (event,index) {
+deleteTask (e,index) {
     // console.log(event);
-    event.preventDefault();
-    this.state.tasks.splice(index,1);
-    this.loadTasks();
+   // e.preventDefault();
+    this.setState(this.state.tasks.splice(index,1));
+    this.setState({selectedDate: index});
 }
-addTask(task,index) {
-    // let newTaskObject = {task: n, isComplete: false};
-    // this.tasks.push(newTaskObject);
-    // this.loadTasks();
-    // document.getElementById("newTask").value = "";
-    
+addTask(t,index) {
+    let newTaskObject = {task: t, isComplete: false};
+   // this.setState(this.state.toggleTaskStatustasks.push(newTaskObject));
+   this.setState({tasks: newTaskObject});
+    document.getElementById("newTask").value = "";
     }
   render() {
     return (
       <div className="container">    
         <TaskForm onSubmit={this.addTask}/>
-        <TaskList tasks={this.state.tasks}/>
+        <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} toggleTaskStatus={this.toggleTaskStatus}/>
       </div>
     );
   }

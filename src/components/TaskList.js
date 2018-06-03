@@ -7,9 +7,10 @@ class TaskList extends Component {
     render () {
         const { tasks } = this.props;
         return (
-        <div className="">
+        <div className="tasks">
             <ul className="list-group" id="taskList">
-                { tasks.map((task, index) => <Task key={index} task={task} index={index} deleteTask={this.props.deleteTask}
+                { tasks.map((task, index) => <Task key={index} task={task} index={index} 
+                deleteTask={this.props.deleteTask}
                 toggleTaskStatus={this.props.toggleTaskStatus}/>) }
             </ul>
         </div>
