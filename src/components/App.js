@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import TaskList from './TaskList';
+import TaskForm from './TaskForm';
 
 class App extends Component {
   constructor(props){
@@ -22,14 +23,14 @@ class App extends Component {
 
 
 toggleTaskStatus(index) {
-    // this.tasks[index].isComplete = !this.tasks[index].isComplete;
+    // this.setState(tasks[index].isComplete = !tasks[index].isComplete)
     // this.loadTasks();
 }
 deleteTask (event,index) {
     // console.log(event);
-    // event.preventDefault();
-    // this.tasks.splice(index,1);
-    // this.loadTasks();
+    event.preventDefault();
+    this.state.tasks.splice(index,1);
+    this.loadTasks();
 }
 addTask(task,index) {
     // let newTaskObject = {task: n, isComplete: false};
@@ -40,7 +41,8 @@ addTask(task,index) {
     }
   render() {
     return (
-      <div className="container">
+      <div className="container">    
+        <TaskForm onSubmit={this.addTask}/>
         <TaskList tasks={this.state.tasks}/>
       </div>
     );
