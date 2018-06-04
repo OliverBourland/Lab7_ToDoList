@@ -16,7 +16,7 @@ class TaskForm extends Component {
         }
     submitTask (event){
         event.preventDefault();
-        const task =  this.state.task.value;
+        const task =  this.state.task;
         const addTask = this.props.onSubmit;
         addTask(task);
     }
