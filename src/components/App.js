@@ -28,7 +28,6 @@ class App extends Component {
 toggleTaskStatus(index) {
   console.log(index)
   const stateCopy = this.state.tasks; 
-  const complete = !this.state.tasks[index].isComplete;
   stateCopy[index].isComplete = !this.state.tasks[index].isComplete;
   console.log(stateCopy[index].isComplete)
   this.setState(stateCopy[index])
