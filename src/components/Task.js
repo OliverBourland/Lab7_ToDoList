@@ -5,6 +5,7 @@ class Task extends Component {
     constructor(props) {
         super(props);
         this.onDeleteTask = this.onDeleteTask.bind(this);
+        this.onToggleTaskStatus = this.onToggleTaskStatus.bind(this); 
     }
         
 
@@ -14,22 +15,27 @@ class Task extends Component {
         const deleteTask = this.props.deleteTask;
         deleteTask(index);
     }
+    onToggleTaskStatus(event) {
+      event.preventDefault();
+      const index = this.props.index;
+      const toggleTaskStatus = this.props.toggleTaskStatus;
+      toggleTaskStatus(index);
+    }
 
     render() {
         const { task } = this.props.task;
         
         const checked = (this.props.task.isComplete) ? "checked":"";
-        //const complete = (this.props.task.isComplete) ? "complete":"";
-        const toggleTaskStatus = this.props.toggleTaskStatus;
+        const complete = (this.props.task.isComplete) ? "complete":"";
     return (
           <li className="list-group-item checkbox">
             <div className="row">
               <div className="col-md-1 col-xs-1 col-lg-1 col-sm-1 checkbox">
                 <label>
-                    <input className="" checked={checked} onChange={toggleTaskStatus(this.props.index)} id="toggleTaskStatus" type="checkbox"  value=""  />
+                    <input onChange={this.onToggleTaskStatus} id="toggleTaskStatus" type="checkbox"  value="" className="" checked={checked} />
                 </label>
               </div>
-              <div className="col-md-10 col-xs-10 col-lg-10 col-sm-10 task-text ">
+              <div className={`col-md-10 col-xs-10 col-lg-10 col-sm-10 task-text ${complete}`} >
                 {task}
               </div>
               <div className="col-md-1 col-xs-1 col-lg-1 col-sm-1 delete-icon-area">

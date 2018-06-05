@@ -6,9 +6,7 @@ import TaskForm from './TaskForm';
 
 class App extends Component {
   constructor(props){
-    super(props);
-    //const taskItems = JSON.parse(localStorage.getItem("TASKS"));
-    
+    super(props);  
       this.state = {
         tasks: JSON.parse(localStorage.getItem("TASKS")),
         input: {}
@@ -29,9 +27,11 @@ class App extends Component {
 
 toggleTaskStatus(index) {
   console.log(index)
-  let complete = !this.state.tasks[index].isComplete;
-    //this.setState({task: complete})
-    console.log(complete)
+  const stateCopy = this.state.tasks; 
+  const complete = !this.state.tasks[index].isComplete;
+  stateCopy[index].isComplete = !this.state.tasks[index].isComplete;
+  console.log(stateCopy[index].isComplete)
+  this.setState(stateCopy[index])
 }
 deleteTask (index) {
     this.setState(this.state.tasks.splice(index,1));
@@ -39,7 +39,6 @@ deleteTask (index) {
 addTask(taskItem) {
   const newTask = {task: taskItem, isComplete: false};
     this.setState({tasks: this.state.tasks.concat([newTask])});
-    //this.setState({arrayvar: this.state.arrayvar.concat([newelement])})
     document.getElementById("newTask").value = "";
     }
   render() {
